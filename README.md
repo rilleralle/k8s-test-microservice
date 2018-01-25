@@ -3,7 +3,7 @@
 # Abstract
 ```k8s-test-microservice``` is a nodejs server
 packed in a Docker container that provides endpoints
-to play around with kubernetes features. By default each endpoint
+to play around with Kubernetes features. By default each endpoint
 returns a 200 HTTP code. That can be changed by setting a path variable
 with the desired return code.
 
@@ -32,11 +32,11 @@ that the response was send by different pods because you can see the hostname
 of the answering pod.
 
 ## Show self healing
-As you know, kubernetes can check the status of a pod via accessing
+As you know, Kubernetes can check the status of a pod via accessing
 the endpoint ```/liveness```. If the HTTP response code is 200 everything
-is fine. But if the response is 400 kubernetes will restart the pod.
+is fine. But if the response is 400 Kubernetes will restart the pod.
 By default the HTTP code for endpoint ```/liveness``` is 200. You can change
-the code by calling endpoint ```/liveness/400``` for example. Form now on
+the code by calling endpoint ```/liveness/400``` for example. From now on
 the HTTP status will be 400.
 
 
