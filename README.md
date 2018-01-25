@@ -1,3 +1,5 @@
+![image](image.png)
+
 # Abstract
 ```k8s-test-microservice``` is a nodejs server
 packed in a Docker container that provides endpoints
@@ -8,8 +10,6 @@ with the desired return code.
 This service is already available at Docker Hub.
 
 [rilleralle/k8s-test-microservice](https://hub.docker.com/r/rilleralle/k8s-test-microservice/)
-
-![image](image.png)
 
 | Endpoint       | Description                                  |
 |----------------|----------------------------------------------|
