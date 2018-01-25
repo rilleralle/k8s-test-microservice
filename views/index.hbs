@@ -31,7 +31,7 @@
 <h2>Response from <b>'{{{hostname}}}'</b></h2>
 <h4>Usage</h4>
 <p>
-    Server provides endpoints that will return status code 200 by default.
+    Server provides endpoints that will return HTTP status code 200 by default.
 </p>
 
 <h4>Endpoints</h4>
@@ -47,19 +47,19 @@
     </tr>
     <tr>
         <td><a href="/liveness">/liveness</a></td>
-        <td>Show current HTTP code for endpoint</td>
+        <td>Return page with HTTP code</td>
     </tr>
     <tr>
         <td><a href="/liveness">/liveness</a>/xxx</td>
-        <td>Set xxx as HTTP code for endpoint</td>
+        <td>Set xxx as HTTP code for endpoint /liveness</td>
     </tr>
     <tr>
         <td><a href="/readiness">/readiness</a></td>
-        <td>Show current HTTP code for endpoint</td>
+        <td>Return page with HTTP code</td>
     </tr>
     <tr>
         <td><a href="/readiness">/readiness</a>/xxx</td>
-        <td>Set xxx as HTTP code for endpoint</td>
+        <td>Set xxx as HTTP code for endpoint /readiness</td>
     </tr>
     </tbody>
 </table>
