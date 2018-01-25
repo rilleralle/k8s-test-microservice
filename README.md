@@ -3,13 +3,16 @@
 # Abstract
 ```k8s-test-microservice``` is a nodejs server
 packed in a Docker container that provides endpoints
-to play around with Kubernetes features. By default each endpoint
-returns a 200 HTTP code. That can be changed by setting a path variable
-with the desired return code.
+to play around with Kubernetes features. The default port is 3000.
+By default each endpoint returns a 200 HTTP code.
+That can be changed by setting a path variable with the desired return code.
 
-This service is already available at Docker Hub.
+This service is already available at Docker Hub. [rilleralle/k8s-test-microservice](https://hub.docker.com/r/rilleralle/k8s-test-microservice/)
 
-[rilleralle/k8s-test-microservice](https://hub.docker.com/r/rilleralle/k8s-test-microservice/)
+##### Start container
+```bash
+docker run -p 3000:3000 rilleralle/k8s-test-microservice
+```
 
 | Endpoint       | Description                                  |
 |----------------|----------------------------------------------|
