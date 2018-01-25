@@ -10,17 +10,21 @@ const hostname = require("os").hostname();
 let liveness = 200;
 let readiness = 200;
 
-
-// Use `.hbs` for extensions and find partials in `views/partials`.
-app.engine('hbs', hbs.express4({}));
+// Setup
+app.engine('hbs', hbs.express4({
+    'defaultLayout': __dirname + '/views/layout'
+}));
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 
 app.get('/', (request, response) => {
-    response.render('index', {"hostname" : hostname});
-    //response.send(`Hello from "${hostname}"`);
+    response.render('index',
+        {
+            "hostname" : hostname
+        });
 });
 
+// Define endpoints
 app.get('/liveness', (request, response) => {
     response.status(liveness);
     response.render('endpoint',
