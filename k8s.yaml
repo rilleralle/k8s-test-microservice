@@ -4,7 +4,7 @@ metadata:
   name: my-service
 spec:
   selector:
-    app: k8s-graph
+    app: k8s-test-microservice
   ports:
     - protocol: TCP
       port: 3000
@@ -14,26 +14,30 @@ spec:
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: k8s-deployment
+  name: k8s-test-microservice
 spec:
-  replicas: 3 # tells deployment to run 2 pods matching the template
+  replicas: 5 # tells deployment to run 2 pods matching the template
   template: # create pods using pod definition in this template
     metadata:
-      # unlike pod-nginx.yaml, the name is not included in the meta data as a unique name is
-      # generated from the deployment name
       labels:
-        app: k8s-graph
+        app: k8s-test-microservice
     spec:
       containers:
-      - name: k8s-graph
-        image: rilleralle/test-k8s:v2
+      - name: k8s-test-microservice
+        image: rilleralle/k8s-test-microservice-arm64
         ports:
         - containerPort: 3000
         livenessProbe:
           httpGet:
             path: /liveness
             port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          failureThreshold: 1
         readinessProbe:
           httpGet:
             path: /readiness
             port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          failureThreshold: 1
