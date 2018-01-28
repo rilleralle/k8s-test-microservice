@@ -2,7 +2,7 @@
 
 # Abstract
 `k8s-test-microservice` is a nodejs server
-packed in a Docker container that provides endpoints
+packed in a Docker container that shows the hostname and provides endpoints
 to play around with Kubernetes features. The default port is 3000.
 By default each endpoint returns a 200 HTTP code.
 That can be changed by setting a path variable with the desired return code.
