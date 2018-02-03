@@ -4,7 +4,7 @@ const express = require('express');
 const hbs = require('express-hbs');
 
 const app = express();
-const port = 3001;
+const port = 3000;
 const hostname = require("os").hostname();
 
 let endpointSettings = getEnvVar("ENDPOINTS", ["liveness:200", "readiness:200"]);
