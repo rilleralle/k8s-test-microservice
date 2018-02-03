@@ -7,8 +7,16 @@ const app = express();
 const port = 3000;
 const hostname = require("os").hostname();
 
-let liveness = 200;
-let readiness = 200;
+let endpointSettings = getEnvVar("ENDPOINTS", ["liveness:200", "readiness:200"]);
+let endpoints = endpointSettings.map((item) => {
+    let content = item.split(":");
+    return {"endpoint": content[0], "status": content.length === 2 ? content[1] : 200};
+});
+
+function getEnvVar(envVar, defaultValue) {
+    const value = process.env[envVar];
+    return value === undefined ? defaultValue : value.split(",");
+}
 
 // Setup
 app.engine('hbs', hbs.express4({
@@ -20,52 +28,33 @@ app.set('views', __dirname + '/views');
 app.get('/', (request, response) => {
     response.render('index',
         {
-            "hostname" : hostname
+            "hostname": hostname,
+            "endpoints": endpoints
         });
+});
+
+app.get('/exit/:status?', (request) => {
+    let exitCode = 0;
+    if(request.params.status !== undefined) {
+        exitCode = request.params.status;
+    }
+    process.exit(exitCode);
 });
 
 // Define endpoints
-app.get('/liveness', (request, response) => {
-    response.status(liveness);
-    response.render('endpoint',
-        {
-            "hostname": hostname,
-            "endpoint": "/liveness",
-            "statuscode": liveness
-        });
-});
-
-app.get('/liveness/:status', (request, response) => {
-    if(request.params.status !== undefined) {
-        liveness = request.params.status;
-    }
-    response.render('endpoint',
-        {
-            "hostname": hostname,
-            "endpoint": "/liveness",
-            "statuscode": liveness
-        });
-});
-
-app.get('/readiness', (request, response) => {
-    response.status(readiness);
-    response.render('endpoint',
-        {
-            "hostname": hostname,
-            "endpoint": "/readiness",
-            "statuscode": readiness
-        });
-});
-app.get('/readiness/:status', (request, response) => {
-    if(request.params.status !== undefined) {
-        readiness = request.params.status;
-    }
-    response.render('endpoint',
-        {
-            "hostname": hostname,
-            "endpoint": "/readiness",
-            "statuscode": readiness
-        });
+endpoints.forEach((item, i) => {
+    app.get(`/${item.endpoint}/:status?`, (request, response) => {
+        if(request.params.status !== undefined) {
+            endpoints[i].status = request.params.status;
+        }
+        response.status(parseInt(endpoints[i].status));
+        response.render('endpoint',
+            {
+                "hostname": hostname,
+                "endpoint": "/" + item.endpoint,
+                "statuscode": endpoints[i].status
+            });
+    });
 });
 
 app.listen(port, (err) => {

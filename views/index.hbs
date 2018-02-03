@@ -16,20 +16,20 @@
         <td>This page</td>
     </tr>
     <tr>
-        <td><a href="/liveness">/liveness</a></td>
-        <td>Return page with HTTP code</td>
+        <td><a href="/exit">/exit/status?</a></td>
+        <td>
+            <p>Stops the server</p>
+            <p>Optional parameter status is exit code. Default is 0</p>
+        </td>
     </tr>
-    <tr>
-        <td><a href="/liveness">/liveness</a>/xxx</td>
-        <td>Set xxx as HTTP code for endpoint /liveness</td>
-    </tr>
-    <tr>
-        <td><a href="/readiness">/readiness</a></td>
-        <td>Return page with HTTP code</td>
-    </tr>
-    <tr>
-        <td><a href="/readiness">/readiness</a>/xxx</td>
-        <td>Set xxx as HTTP code for endpoint /readiness</td>
-    </tr>
+    {{#each endpoints}}
+        <tr>
+            <td><a href="/{{endpoint}}">/{{endpoint}}:status?</a></td>
+            <td>
+                <p>Current return HTTP code is '{{status}}'</p>
+                <p>Optional parameter status will set new HTTP status code</p>
+            </td>
+        </tr>
+    {{/each}}
     </tbody>
 </table>
