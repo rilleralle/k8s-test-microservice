@@ -4,7 +4,7 @@ const express = require('express');
 const hbs = require('express-hbs');
 
 const app = express();
-const port = 3000;
+const port = 3001;
 const hostname = require("os").hostname();
 
 let endpointSettings = getEnvVar("ENDPOINTS", ["liveness:200", "readiness:200"]);
@@ -33,12 +33,16 @@ app.get('/', (request, response) => {
         });
 });
 
-app.get('/exit/:status?', (request) => {
+app.get('/exit/:status?', (request, response) => {
     let exitCode = 0;
     if(request.params.status !== undefined) {
         exitCode = request.params.status;
     }
-    process.exit(exitCode);
+    response.render('kill',
+        {
+            "hostname": hostname
+        });
+    setTimeout(() => process.exit(exitCode), 5000);
 });
 
 // Define endpoints
