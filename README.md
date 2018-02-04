@@ -36,20 +36,20 @@ docker run -p 3000:3000 -e ENDPOINTS="foo:200,bar:250,baz:400" rilleralle/k8s-te
 # What can I do with it?
 Kubernetes is a great tool for container orchestration and it is very popular.
 However, I realized that a lot of people do not really understand how
-powerful a microservice architecture can be in real live, even for tech people.
+powerful a microservice architecture can be in real life, even for tech people.
 You can use this service for demonstration purposes.
 
 ## Show scaling
 As you know, you can create multiple pods that can be accessed via one service.
 Deploy `k8s-test-microservice` and access the service and you will see
-that the response was send by different pods because you can see the hostname
+that the response was sent by different pods because you can see the hostname
 of the answering pod.
 
-## Show self healing
+## Show self-healing
 As you know, Kubernetes can check the status of a pod via accessing
 the endpoint `/liveness`. If the HTTP response code is 200 everything
 is fine. But if the response is 400 Kubernetes will restart the pod.
-By default the HTTP code for endpoint `/liveness` is 200. You can change
+By default, the HTTP code for endpoint `/liveness` is 200. You can change
 the code by calling endpoint `/liveness/400` for example. From now on
 the HTTP status will be 400.
 
