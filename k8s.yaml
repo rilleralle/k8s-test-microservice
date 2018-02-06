@@ -18,6 +18,8 @@ metadata:
   name: k8s-test-microservice
 spec:
   replicas: 5 # tells deployment to run 5 pods matching the template
+  strategy:
+    type: RollingUpdate
   template: # create pods using pod definition in this template
     metadata:
       labels:
@@ -25,7 +27,7 @@ spec:
     spec:
       containers:
       - name: k8s-test-microservice-container
-        image: rilleralle/k8s-test-microservice-arm64
+        image: rilleralle/k8s-test-microservice-arm64:v1
         ports:
         - containerPort: 3000
         livenessProbe:
