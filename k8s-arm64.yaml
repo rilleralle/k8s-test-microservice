@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: k8s-test-microservice-container
-        image: rilleralle/k8s-test-microservice:v1
+        image: rilleralle/k8s-test-microservice-arm64:v1
         ports:
         - containerPort: 3000
         livenessProbe:
