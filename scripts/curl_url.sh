@@ -1,2 +1,2 @@
 #!/bin/bash
-while :; do curl $1; done
+while :; do curl -w "\n" $1; done
