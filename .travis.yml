@@ -1,0 +1,13 @@
+sudo: required
+language: node_js
+node_js:
+  - "node"
+services:
+  - docker
+install:
+  - npm install
+deploy:
+  provider: script
+  script: bash scripts/docker_deploy.sh
+  on:
+    branch: master
