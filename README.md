@@ -99,6 +99,7 @@ Or:
 ```
 $ kubectl set image deployment/k8s-test-microservice k8s-test-microservice-container=rilleralle/k8s-test-microservice:v2
 ```
+
 ## Rollback update
 If you realize that your new version has a bug or the new feature is crap,
 you can easily rollback to the latest version.
