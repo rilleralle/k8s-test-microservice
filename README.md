@@ -28,6 +28,7 @@ $ docker run -p 3000:3000 -e ENDPOINTS="foo:200,bar:250,baz:400" rilleralle/k8s-
 | Endpoint           | Description                                                                               |
 |--------------------|-------------------------------------------------------------------------------------------|
 | /                  | This page                                                                                 |
+| /name              | Returns the hostname as plain text                                                           |
 | /exit/status?      | Stops the server<br>Optional parameter status is exit code. Default is 0                     |
 | /liveness:status?  | Current return HTTP code is '200'<br>Optional parameter status will set new HTTP status code |
 | /readiness:status? | Current return HTTP code is '200'<br>Optional parameter status will set new HTTP status code |

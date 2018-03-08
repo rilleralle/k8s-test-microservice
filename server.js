@@ -25,6 +25,7 @@ app.engine('hbs', hbs.express4({
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 
+// Define root endpoint
 app.get('/', (request, response) => {
     response.render('index',
         {
@@ -33,6 +34,12 @@ app.get('/', (request, response) => {
         });
 });
 
+// Define hostname endpoint
+app.get('/name', (request, response) => {
+    response.send(hostname);
+});
+
+// Define exit endpoint
 app.get('/exit/:status?', (request, response) => {
     let exitCode = 0;
     if(request.params.status !== undefined) {
