@@ -19,13 +19,13 @@
         <td>This page</td>
     </tr>
     <tr>
-        <td><a href="/name">/name</a></td>
+        <td><a href="./name">/name</a></td>
         <td>
             <p>Returns the hostname as plain text</p>
         </td>
     </tr>
     <tr>
-        <td><a href="/exit">/exit/:status?</a></td>
+        <td><a href="./exit">/exit/:status?</a></td>
         <td>
             <p>Stops the server</p>
             <p>Optional parameter status is exit code. Default is 0</p>
@@ -33,7 +33,7 @@
     </tr>
     {{#each endpoints}}
         <tr>
-            <td><a href="/{{endpoint}}">/{{endpoint}}/:status?</a></td>
+            <td><a href="./{{endpoint}}">/{{endpoint}}/:status?</a></td>
             <td>
                 <p>Current return HTTP code is '{{status}}'</p>
                 <p>Optional parameter status will set new HTTP status code</p>
